@@ -228,7 +228,7 @@ def main():
     
 #! Special Abilities
     
-    if special_question == "y" or "Y":
+    if special_question == "y":
         #? WARRIOR
          if player_class == "Warrior":
              print("Your Special Abilities are")
@@ -265,7 +265,7 @@ def main():
              print(random_priest_special_2)
              print()
             
-    elif special_question == "N" or "n":
+    elif special_question == "n":
         print("No Specials Chosen")
     
 
