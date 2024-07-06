@@ -119,6 +119,27 @@ mage_specials = [
     
                 ]
 
+def select_skills(skills, min_selected_skills, max_selected_skills):
+    num_selected_skills = random.randint(min_selected_skills, max_selected_skills)
+    return random.sample(skills, num_selected_skills)
+
+def distribute_points(num_points, selected_skills, max_points_per_skill):
+    
+    points = {skill: 0 for skill in selected_skills}
+
+    while num_points > 0:
+        
+        skill = random.choice(selected_skills)
+        
+        
+        if points[skill] < max_points_per_skill:
+            points[skill] += 1
+            num_points -= 1
+
+    return points
+
+
+
 
 def main():
 
@@ -195,26 +216,30 @@ def main():
         starting_equipment = "5 gold Pieces, A club, A dagger, A symbol of your faith and 20 feet of rope"
         
         pass
-    
-    print()
+    #! QUESTIONS 
+    print('')
     print("- - - - - - - - - - - ")
-    print()
+    print('')
     special_question = input ("Would you like to have your specials randomly chosen? (Y / N)   ")
-    print()
+    print('')
     print("- - - - - - - - - - - ")
-    print()
+    print('')
+    skill_question = input ("Would you like to have your skills randomly chosen? (Y / N)   ")
+    print('')
+    print("- - - - - - - - - - - ")
+    print('')
     
-    
-    print()
+    #! MAIN PRINT
+    print('')
     print("- - - -")
     print("You are a", player_size, player_class)
     print("You have", health, "Health and", stamina, "Stamina!")
     print("- - - -")
     print("You Have", starting_equipment)
     print("- - - -")
-    print()
+    print('')
     print("       ---STATS---")
-    print()
+    print('')
     print("Your Strength is", Strength)
     print("- - - -")
     print("Your Nimbleness is", Nimbleness)
@@ -231,43 +256,124 @@ def main():
     if special_question == "y":
         #? WARRIOR
          if player_class == "Warrior":
-             print("Your Special Abilities are")
-             print()
+             print('')
+             print("      ----SPECIAL ABILITIES----")
+             print('')
              print(random_warrior_special_1)
              print("                - - - - -")
              print(random_warrior_special_2)
-             print() 
+             print('') 
                               
         #? SCOUT
          elif player_class == "Scout":
-             print("Your Special Abilities are")
-             print()
+             print('')
+             print("      ----SPECIAL ABILITIES----")
+             print('')
              print(random_scout_special_1)
              print("                - - - - -")
              print(random_scout_special_2)
-             print()
+             print('')
              
         #? MAGE
          elif player_class == "Mage":
-             print("Your Special Abilities Are")
-             print()
+             print('')
+             print("      ----SPECIAL ABILITIES----")
+             print('')
              print(random_mage_special_1)
              print("                - - - - -")
              print(random_mage_special_2)
-             print()
+             print('')
         
          #? PRIEST
          elif player_class == "Priest":
-             print("Your Special Abilities are")
-             print()
+             print('')
+             print("      ----SPECIAL ABILITIES----")
+             print('')
              print(random_priest_special_1)
              print("                - - - - -")
              print(random_priest_special_2)
-             print()
+             print('')
             
     elif special_question == "n":
+        print('')
+        print("- - - - - - ")
+        print("")
         print("No Specials Chosen")
-    
+        print('')
+        
 
+#! Player Skills 
+    if skill_question == "y":
+        
+        num_points = 6
+        all_skills = ("Melee: For every five training points, you get a +1 to your defensive score while holding a melee weapon.          ",
+                      
+        "Close Melee: For every 5 training points, if you deal deal damage with a close melee weapon, they target takes an extra 2 damage.          ",
+        
+        "Range: For every 5 training points, you can add +5 to a weapon’s range. ", 
+        
+        "Battle Magic: For every 5 training points, you can learn one extra spell. ", 
+        
+        "Architecture: Based on Comprehension. ", 
+        
+        "Awareness: Based on Comprehension. ", 
+        
+        "Breath Hold: Based on Durability. ", 
+        
+        "Demolish: Based on Strength. ",
+        
+        "First Aid: Based on Grace. ", 
+        
+        "Influence: Based on Grace.  ",
+        
+        "Lockpicking: Based on Nimbleness. ",
+        
+        "Magic: Based on Comprehension. ",
+        
+        "Nature: Based on Comprehension. ",
+        
+        "Sneak: Based on Nimbleness. ",
+        
+        "Spirituality: Based on Grace. ",
+        
+        "Trapmaking: Based on Comprehension. "
+        )
+        
+        min_selected_skills = 1
+        max_selected_skills = 6
+        max_points_per_skill = 3
+
+        selected_skills = select_skills(all_skills, min_selected_skills, max_selected_skills)
+        points_distribution = distribute_points(num_points, selected_skills, max_points_per_skill)
+
+        print("      ----SKILLS----")
+        print(" ")
+        for skill in selected_skills:
+            print(skill)
+        print(" ")    
+        print("\nPoints Distribution:")
+        print(" ")
+        for skill, points in points_distribution.items():
+            if points > 0:
+                print(f"{skill}: {points}")
+        print("")
+        print("------------")
+        print("")        
+
+        
+        
+            
+            
+            
+    elif skill_question == "n":
+        print('')
+        print("- - - - - - ")
+        print("")
+        print("No Skills Chosen")
+        print("")
+        
+       
+    print("")
+    
 if __name__ == '__main__':
     main()
