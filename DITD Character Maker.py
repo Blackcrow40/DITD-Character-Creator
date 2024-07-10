@@ -115,32 +115,27 @@ mage_specials = [
      "SUMMON LESSER ELEMENTAL: 10 foot range - you conjure a lesser elemental (see stablocks below) at a spot within ten feet of you which you can see. The elemental is under your command, and dies upon reaching 0 hp. 10 stamina",
 
      "MAJOR LIGHTNING BOLT. 60 foot range - 9d6 Lightning damage within 60 feet. Costs 12 stamina.",
-    
-    
                 ]
 
 def select_skills(skills, min_selected_skills, max_selected_skills):
+    
     num_selected_skills = random.randint(min_selected_skills, max_selected_skills)
     return random.sample(skills, num_selected_skills)
 
 def distribute_points(num_points, selected_skills, max_points_per_skill):
     
     points = {skill: 0 for skill in selected_skills}
-
+    
     while num_points > 0:
         
         skill = random.choice(selected_skills)
-        
         
         if points[skill] < max_points_per_skill:
             points[skill] += 1
             num_points -= 1
 
     return points
-
-
-
-
+    
 def main():
 
     player_class = random.choice(class_list)
@@ -360,11 +355,6 @@ def main():
         print("------------")
         print("")        
 
-        
-        
-            
-            
-            
     elif skill_question == "n":
         print('')
         print("- - - - - - ")
