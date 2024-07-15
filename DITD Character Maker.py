@@ -1,5 +1,28 @@
+
+#TODO
+    # make certain skills never assign to certain classes
+    # properly comment everything
+    # add a level system
+    # Add a GUI
+    # Add a random name generator
+
 import random
 
+ASCII_title = """"
+______ _____ ___________        _____ _                          _                   _____                _             
+|  _  \_   _|_   _|  _  \      /  __ \ |                        | |                 /  __ \              | |            
+| | | | | |   | | | | | |______| /  \/ |__   __ _ _ __ __ _  ___| |_ ___ _ __ ______| /  \/_ __ ___  __ _| |_ ___  _ __ 
+| | | | | |   | | | | | |______| |   | '_ \ / _` | '__/ _` |/ __| __/ _ \ '__|______| |   | '__/ _ \/ _` | __/ _ \| '__|
+| |/ / _| |_  | | | |/ /       | \__/\ | | | (_| | | | (_| | (__| ||  __/ |         | \__/\ | |  __/ (_| | || (_) | |   
+|___/  \___/  \_/ |___/         \____/_| |_|\__,_|_|  \__,_|\___|\__\___|_|          \____/_|  \___|\__,_|\__\___/|_|   
+                                                                                                                        
+"""
+SPECIAL_ABILITYS= """        
+┏┓┏┓┏┓┏┓┳┏┓┓ ┏┓┳┓┳┓ ┳┏┳┓┳┏┓┏┓
+┗┓┃┃┣ ┃ ┃┣┫┃ ┣┫┣┫┃┃ ┃ ┃ ┃┣ ┗┓
+┗┛┣┛┗┛┗┛┻┛┗┗┛┛┗┻┛┻┗┛┻ ┻ ┻┗┛┗┛
+                   """
+                   
 class_list = ["Warrior", "Scout", "Mage", "Priest" ]
 size_list = ["Small", "Medium",  "Large"]
 
@@ -115,27 +138,32 @@ mage_specials = [
      "SUMMON LESSER ELEMENTAL: 10 foot range - you conjure a lesser elemental (see stablocks below) at a spot within ten feet of you which you can see. The elemental is under your command, and dies upon reaching 0 hp. 10 stamina",
 
      "MAJOR LIGHTNING BOLT. 60 foot range - 9d6 Lightning damage within 60 feet. Costs 12 stamina.",
+    
+    
                 ]
 
 def select_skills(skills, min_selected_skills, max_selected_skills):
-    
     num_selected_skills = random.randint(min_selected_skills, max_selected_skills)
     return random.sample(skills, num_selected_skills)
 
 def distribute_points(num_points, selected_skills, max_points_per_skill):
     
     points = {skill: 0 for skill in selected_skills}
-    
+
     while num_points > 0:
         
         skill = random.choice(selected_skills)
+        
         
         if points[skill] < max_points_per_skill:
             points[skill] += 1
             num_points -= 1
 
     return points
-    
+
+
+
+
 def main():
 
     player_class = random.choice(class_list)
@@ -212,6 +240,7 @@ def main():
         
         pass
     #! QUESTIONS 
+    print(ASCII_title)
     print('')
     print("- - - - - - - - - - - ")
     print('')
@@ -225,16 +254,25 @@ def main():
     print('')
     
     #! MAIN PRINT
-    print('')
-    print("- - - -")
+    print("""
+┏┓┓ ┏┓┏┓┏┓
+┃ ┃ ┣┫┗┓┗┓
+┗┛┗┛┛┗┗┛┗┛
+          """)
     print("You are a", player_size, player_class)
     print("You have", health, "Health and", stamina, "Stamina!")
-    print("- - - -")
+    print("""
+┳┳┓┓┏┏┓┳┓┏┳┓┏┓┳┓┓┏
+┃┃┃┃┃┣ ┃┃ ┃ ┃┃┣┫┗┫
+┻┛┗┗┛┗┛┛┗ ┻ ┗┛┛┗┗┛
+          """)
     print("You Have", starting_equipment)
-    print("- - - -")
-    print('')
-    print("       ---STATS---")
-    print('')
+    print()
+    print("""
+┏┓┏┳┓┏┓┏┳┓┏┓
+┗┓ ┃ ┣┫ ┃ ┗┓
+┗┛ ┻ ┛┗ ┻ ┗┛
+          """)
     print("Your Strength is", Strength)
     print("- - - -")
     print("Your Nimbleness is", Nimbleness)
@@ -252,7 +290,7 @@ def main():
         #? WARRIOR
          if player_class == "Warrior":
              print('')
-             print("      ----SPECIAL ABILITIES----")
+             print(SPECIAL_ABILITYS)
              print('')
              print(random_warrior_special_1)
              print("                - - - - -")
@@ -262,7 +300,7 @@ def main():
         #? SCOUT
          elif player_class == "Scout":
              print('')
-             print("      ----SPECIAL ABILITIES----")
+             print(SPECIAL_ABILITYS)
              print('')
              print(random_scout_special_1)
              print("                - - - - -")
@@ -272,7 +310,7 @@ def main():
         #? MAGE
          elif player_class == "Mage":
              print('')
-             print("      ----SPECIAL ABILITIES----")
+             print(SPECIAL_ABILITYS)
              print('')
              print(random_mage_special_1)
              print("                - - - - -")
@@ -282,10 +320,12 @@ def main():
          #? PRIEST
          elif player_class == "Priest":
              print('')
-             print("      ----SPECIAL ABILITIES----")
+             print(SPECIAL_ABILITYS)
              print('')
              print(random_priest_special_1)
-             print("                - - - - -")
+             print('')
+             print("- - - - - - - - - - - - - - - - - - - -")
+             print('')
              print(random_priest_special_2)
              print('')
             
@@ -301,9 +341,9 @@ def main():
     if skill_question == "y":
         
         num_points = 6
-        all_skills = ("Melee: For every five training points, you get a +1 to your defensive score while holding a melee weapon.          ",
+        all_skills = ("Melee: For every five training points, you get a +1 to your defensive score while holding a melee weapon. ",
                       
-        "Close Melee: For every 5 training points, if you deal deal damage with a close melee weapon, they target takes an extra 2 damage.          ",
+        "Close Melee: For every 5 training points, if you deal deal damage with a close melee weapon, they target takes an extra 2 damage. ",
         
         "Range: For every 5 training points, you can add +5 to a weapon’s range. ", 
         
@@ -341,7 +381,11 @@ def main():
         selected_skills = select_skills(all_skills, min_selected_skills, max_selected_skills)
         points_distribution = distribute_points(num_points, selected_skills, max_points_per_skill)
 
-        print("      ----SKILLS----")
+        print("""
+┏┓┓┏┓┳┓ ┓ ┏┓
+┗┓┃┫ ┃┃ ┃ ┗┓
+┗┛┛┗┛┻┗┛┗┛┗┛
+              """)
         print(" ")
         for skill in selected_skills:
             print(skill)
@@ -355,6 +399,11 @@ def main():
         print("------------")
         print("")        
 
+        
+        
+            
+            
+            
     elif skill_question == "n":
         print('')
         print("- - - - - - ")
