@@ -5,6 +5,7 @@
     # add a level system
     # Add a GUI
     # Add a random name generator
+    # Change To New Version
 
 import random
 
