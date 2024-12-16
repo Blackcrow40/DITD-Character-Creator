@@ -1,11 +1,11 @@
 
 #TODO
-    # make certain skills never assign to certain classes
-    # properly comment everything
-    # add a level system
-    # Add a GUI
-    # Add a random name generator
-    # Change To New Version
+    # make certain skills never assign to certain classes ()
+    # properly comment everything (Would Have Helped to do this before i left for five months)
+    # add a level system ()
+    # Add a GUI ()
+    # Add a random name generator (Class Specific)
+    # Update To New Version ()
 
 import random
 
